@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey_200"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="70dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cardview_homefragmnet1"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="3dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:padding="4dp"
+                                android:layout_margin="3dp"
+                                android:layout_gravity="center"
+                                android:text="Dear xyz, Your next available slot for milk item is on 28 may 2020 . No slot available currently for non-milk item please  try again tomorrow.">
+
+                            </TextView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="80dp"
+                                    android:padding="15dp"
+                                    android:src="@drawable/milk"
+                                    android:layout_weight="1">
+
+                                </ImageView>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="80dp"
+                                    android:padding="15dp"
+                                    android:src="@drawable/nonmilkproduct"
+                                    android:layout_weight="1">
+
+                                </ImageView>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="80dp"
+                                    android:padding="15dp"
+                                    android:src="@drawable/deliveryboy"
+                                    android:layout_weight="1">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="4dp"
+                                android:weightSum="3">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:id="@+id/tv_milkhomepage"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textSize="13dp"
+                                    android:text=""
+                                    android:layout_weight="1">
+
+                                </TextView>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_nonmilkhomepage"
+                                    android:textSize="13dp"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:layout_weight="1">
+
+                                </TextView>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="13dp"
+                                    android:id="@+id/tv_deliveryboyhomepage"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:layout_weight="1">
+
+                                </TextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/cardview_homefragmnet1"
+                        android:id="@+id/recyclerSlider"
+                        android:layout_margin="10dp">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="All Milk"
+                        android:id="@+id/tv_allmilkhomefragment"
+                        android:layout_below="@+id/recyclerSlider"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp">
+
+                    </TextView>
+
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/recyclerDailyProduct"
+                                android:orientation="horizontal"
+                                android:layout_margin="10dp"
+                                android:layout_below="@+id/tv_allmilkhomefragment">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Categories"
+                        android:id="@+id/tv_categorieshomefragment"
+                        android:layout_below="@+id/recyclerDailyProduct"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp">
+
+                    </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/gridview_categoryHome"
+                                android:numColumns="3"
+                                android:columnWidth="4dp"
+                                android:layout_margin="10dp"
+                                android:layout_below="@+id/tv_categorieshomefragment">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/cardview_homefragmnet5"
+                        android:layout_below="@+id/gridview_categoryHome"
+                        android:layout_marginRight="10dp"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="3dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="190dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:background="#F9CC11"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="22dp"
+
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="Your Sefty Is Our Priority">
+
+                            </TextView>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="15dp"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="7dp"
+                                android:text="As always, all our deliveries are contactless">
+
+                            </TextView>
+
+
+                            <Button
+                                android:layout_width="220dp"
+                                android:layout_height="35dp"
+                                android:text="Click to know more"
+                                android:layout_marginTop="40dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_gravity="center"
+                                android:textSize="15dp"
+                                style="@style/ColoredButtonAppcompat"
+                                android:gravity="center">
+
+                            </Button>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Deal of the Day"
+                        android:id="@+id/tv_dayofthedayfragmenthomepage"
+                        android:layout_below="@+id/cardview_homefragmnet5"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp">
+
+                    </TextView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cardview_homefragmnet6"
+                        android:layout_below="@+id/tv_dayofthedayfragmenthomepage"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="3dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        card_view:cardCornerRadius="10dp"
+                        android:id="@+id/cardview_homefragmnet7"
+                        android:layout_below="@+id/cardview_homefragmnet6"
+                        card_view:cardElevation="3dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+
+
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/bestsummercooleroffers">
+
+                            </ImageView>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/cardview_homefragmnet8"
+                        android:layout_below="@+id/cardview_homefragmnet7"
+                        android:layout_marginRight="10dp"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="3dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/breakfastbanner">
+
+                            </ImageView>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/relative_showcarthomefragment"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/imgggg"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/basketsummary">
+
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/imgggg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Rs"
+                        android:textColor="@color/marun"
+                        android:textSize="15dp">
+
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:id="@+id/tv_totlapriceviewcartappbarmain"
+                        android:text="500"
+                        android:textColor="@color/marun"
+                        android:textSize="14dp">
+
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text=""
+                        android:textColor="@color/marun"
+                        android:textSize="14dp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="5dp"
+                        android:id="@+id/tv_totalitemsviewcartappbarmain"
+                        android:text=""
+                        android:textColor="@color/marun"
+                        android:textSize="14dp">
+
+                    </TextView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_viewcart"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:padding="2dp"
+                android:background="@drawable/btn_backgroud_transperent"
+                android:text="View cart">
+
+            </Button>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>

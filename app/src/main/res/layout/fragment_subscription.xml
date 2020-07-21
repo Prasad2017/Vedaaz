@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Subscription"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:background="@color/yellow_200"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/logo"
+            android:layout_marginLeft="40dp"
+            android:id="@+id/productimg"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_name"
+            android:layout_gravity="center"
+            android:hint="name"
+            android:layout_marginLeft="20dp"
+            android:gravity="center|start"
+            android:textColor="@color/black"
+            android:textSize="17sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_price"
+                android:layout_gravity="center"
+                android:hint="name"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|start"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/light_gray"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_shopping"
+            android:tint="@color/grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Quantity\n per day"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/btn_backgroud_transperent">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_remove_black"
+                android:id="@+id/minus"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="1"
+                android:id="@+id/qty"
+                android:layout_marginRight="20dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_add_black"
+                android:id="@+id/add"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/black_light"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/dateLayout">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_event"
+            android:tint="@color/grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Start Date"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="25-11-2020"
+            android:layout_marginTop="30dp"
+            android:gravity="center|start"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:id="@+id/StartDate"/>
+
+        <TextView
+            android:layout_below="@id/StartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next day delivery avilable after your first order"
+            android:gravity="center|start"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            android:textSize="14dp"
+            android:background="@drawable/btn_backgroud_transperent"
+            android:backgroundTint="@color/grey_10"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/black_light"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/repeatLayout">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_repeat"
+            android:tint="@color/grey"/>
+
+        <TextView
+            android:id="@+id/textRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Repeat"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/textRepeat"
+            android:gravity="center">
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="M"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/monady"/>
+
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="T"
+                android:background="@drawable/rount_shape"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tuesday"/>
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="W"
+                android:background="@drawable/rount_shape"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/wesdnsday"/>
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="T"
+                android:background="@drawable/rount_shape"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/thursday"/>
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="F"
+                android:background="@drawable/rount_shape"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/friday"/>
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="S"
+                android:background="@drawable/rount_shape"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/saturday"/>
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="S"
+                android:background="@drawable/rount_shape"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/sunday"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/black_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Get your groceries on\nauto-poilet with subscription"
+            android:layout_marginLeft="20dp"
+            android:gravity="center|start"
+            android:textColor="#4A0609"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cancel anytime:\nCancel anytime and get your money back"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|start"
+            android:textColor="@color/black_light"
+            android:textSize="14sp"
+            android:drawableLeft="@drawable/ic_settings_black"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Set Vaction day easily:\nGoing on vacations?Set flaxible vacation days"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|start"
+            android:textColor="@color/black_light"
+            android:textSize="14sp"
+            android:drawableLeft="@drawable/ic_event"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black_light"/>
+
+
+        <LinearLayout
+            android:id="@+id/btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:background="@color/white"
+            android:elevation="20dp"
+            android:layout_margin="2dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/errorColor"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="20dp"/>
+
+            <Button
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/subscribe"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="30dp"
+                android:background="@drawable/btn_backgroud_transperent"
+                android:backgroundTint="@color/yellow_600"
+                android:text="Subscirbe"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
+</androidx.core.widget.NestedScrollView>
+</RelativeLayout>

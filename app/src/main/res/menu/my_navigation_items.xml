@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_accout"
+            android:icon="@drawable/user"
+            android:title="@string/menu_account" />
+        <item
+            android:id="@+id/nav_subscription"
+            android:icon="@drawable/mysubscription"
+            android:title="@string/menu_mysubscri" />
+
+        <item
+            android:id="@+id/nav_pauseSubscription"
+            android:icon="@drawable/mysubscription"
+            android:title="@string/menu_pausesubscri" />
+
+        <item
+            android:id="@+id/nav_adHocSubscription"
+            android:icon="@drawable/mysubscription"
+            android:title="@string/menu_adhocsubscri" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/notification"
+            android:title="@string/menu_notification" />
+
+        <item
+            android:id="@+id/nav_rate"
+            android:icon="@drawable/rate"
+            android:title="@string/menu_rateourapp" />
+
+        <item
+            android:id="@+id/nav_needhelp"
+            android:icon="@drawable/needhelp"
+            android:title="@string/menu_needhelp" />
+
+        <item
+            android:id="@+id/nav_referandearn"
+            android:icon="@drawable/referandearn"
+            android:title="@string/menu_referandearn" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/share"
+            android:title="@string/menu_share" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="@string/menu_logout" />
+
+    </group>
+</menu>

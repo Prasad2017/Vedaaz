@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/servicetype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/blue_grey_900"
+            android:text="Service Type"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:visibility="gone"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-light"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/serviceamount"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:hint="₹ 1,000"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:visibility="gone"
+            android:layout_gravity="center|left"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_margin="3dp"
+            android:fontFamily="sans-serif-light"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"/>
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="some extra charges may be applicable *"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:padding="3dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:id="@+id/addqtyLayout">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgminus"
+                android:src="@drawable/ic_minus"
+                android:tint="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:id="@+id/tv_order_count"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingRight="10dp"
+                android:text="1"
+                android:fontFamily="sans-serif-light"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgadd"
+                android:src="@drawable/ic_add"
+                android:tint="@color/colorPrimary"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/errorColor"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/white"
+                android:textSize="20dp"/>
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/main_green_stroke_color"
+                android:text="Add"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

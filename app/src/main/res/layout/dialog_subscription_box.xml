@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Type:"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/dayslayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textRepeat"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="M"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/monady"/>
+
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="T"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tuesday"/>
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="W"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/wesdnsday"/>
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="T"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/thursday"/>
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="F"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/friday"/>
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="S"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/saturday"/>
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="S"
+            android:background="@drawable/rount_shape"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/sunday"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textRepeat"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Daily"
+            android:background="@drawable/btn_backgroud_transperent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:id="@+id/daily"
+            android:layout_marginRight="15dp"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Alternate"
+            android:background="@drawable/btn_backgroud_transperent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:id="@+id/weekdays"
+            android:layout_marginRight="15dp"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Weekend"
+            android:background="@drawable/btn_backgroud_transperent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:id="@+id/weekend"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Confirm"
+        android:background="@drawable/btn_searchview_order"
+        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:id="@+id/conitune"/>
+    </LinearLayout>
+</RelativeLayout>
