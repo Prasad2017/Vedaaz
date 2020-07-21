@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sdsmdg.tastytoast.TastyToast;
 import com.vedaaz.Activity.MainPage;
@@ -67,10 +68,16 @@ public class Bill extends Fragment {
                     float pendingAmount = 0f;
                     for (int i = 0; i < BillAdapter.productResponseList.size(); i++) {
                         if (BillAdapter.productResponseList.get(i).getSuccess().equals("Pending")) {
-                            pendingAmount +=  Float.parseFloat(BillAdapter.productResponseList.get(i).getDaily_amt());
+                            try {
+                                pendingAmount += Float.parseFloat(BillAdapter.productResponseList.get(i).getDaily_amt());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                         }
                     }
-                    Log.e("PendingAmount", ""+pendingAmount);
+
+                    Log.e("pendingAmount",""+pendingAmount);
+                    Toast.makeText(getActivity(), ""+pendingAmount, Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toasty.warning(getActivity(), "No Internet Connection", Toasty.LENGTH_SHORT);
