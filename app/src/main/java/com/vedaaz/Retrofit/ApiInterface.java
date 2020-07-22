@@ -96,7 +96,7 @@ public interface ApiInterface {
 
     @GET("/androidApp/Vedaaz/Customer/getBillDetails.php")
     Call<AllList> getBillDetails(@Query("user_id") String user_id,
-                                @Query("date") String date);
+                                 @Query("date") String date);
 
 
 }

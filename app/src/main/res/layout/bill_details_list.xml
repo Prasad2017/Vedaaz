@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,51 +11,92 @@
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
         android:background="@color/white">
+
         <TextView
-            android:layout_gravity="center"
-            android:id="@+id/month"
+            android:id="@+id/date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="Date"
-            android:textSize="15sp"
+            android:gravity="center"
+            android:background="@drawable/textborder"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:layout_weight="1"
-            android:padding="10dp"/>
-
-        <TextView
-            android:layout_gravity="center"
-            android:id="@+id/amt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Sub"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:padding="10dp"/>
-
-        <TextView
-            android:layout_gravity="center"
-            android:id="@+id/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="qty"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:padding="10dp"/>
-
-        <TextView
-            android:id="@+id/action"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="amt"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:padding="10dp"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/narration"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="Narration"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:background="@drawable/textborder"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/subscribed"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="Subscribed"
+            android:gravity="center"
+            android:textSize="9sp"
+            android:background="@drawable/textborder"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/pause"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint=""
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:background="@drawable/textborder"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/addhoc"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="Adhoc"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:background="@drawable/textborder"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/totalDelivered"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="Total Delivered"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:background="@drawable/textborder"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="Amount"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:background="@drawable/textborder"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

@@ -60,7 +60,7 @@ public class MainPage extends AppCompatActivity {
     public static BottomNavigationView bottomNavigationView;
     public NavigationView navigationView;
     public static DrawerLayout drawerLayout;
-    public static String userId, first_name, cartId, userName, userCityId, userAreaId;
+    public static String userId, mobileNumber,first_name, cartId, userName, userCityId, userAreaId, currency = "₹";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +75,12 @@ public class MainPage extends AppCompatActivity {
 
             userId = Common.getSavedUserData(MainPage.this, "userId");
             first_name = Common.getSavedUserData(MainPage.this, "first_name");
+            mobileNumber = Common.getSavedUserData(MainPage.this, "mobileNumber");
             cartId = Common.getSavedUserData(MainPage.this, "cartId");
             userName = Common.getSavedUserData(MainPage.this, "userName");
             userCityId = Common.getSavedUserData(MainPage.this, "userCityId");
             userAreaId = Common.getSavedUserData(MainPage.this, "userAreaId");
-            Log.e("iduser",""+userId);
+            Log.e("userId",""+userId);
 
         }catch (Exception e) {
             e.printStackTrace();

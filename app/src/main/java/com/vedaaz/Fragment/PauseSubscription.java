@@ -189,7 +189,7 @@ public class PauseSubscription extends Fragment {
                 dailyProductResponseList =(allList).getSubscriptionResponseList();
 
                 if (dailyProductResponseList.size()==0){
-                    recyclerSubsciber.setVisibility(View.GONE);
+
                 }else {
 
                    planIdList = new String[dailyProductResponseList.size()];
@@ -211,7 +211,7 @@ public class PauseSubscription extends Fragment {
 
             @Override
             public void onFailure(Call<AllList> call, Throwable t) {
-                recyclerSubsciber.setVisibility(View.GONE);
+
             }
         });
     }

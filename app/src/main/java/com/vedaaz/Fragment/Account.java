@@ -8,17 +8,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.sdsmdg.tastytoast.TastyToast;
 import com.vedaaz.Activity.MainPage;
 import com.vedaaz.Extra.DetectConnection;
 import com.vedaaz.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class Account extends Fragment {
 
     View view;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +36,16 @@ public class Account extends Fragment {
         return view;
     }
 
+    @OnClick({R.id.walletLayout})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.walletLayout:
+
+                ((MainPage) getActivity()).loadFragment(new Wallet(), true);
+                break;
+        }
+    }
+
     public void onStart() {
         super.onStart();
         Log.d("onStart", "called");
@@ -39,7 +55,6 @@ public class Account extends Fragment {
         MainPage.menu.setVisibility(View.GONE);
         MainPage.searchLayout.setVisibility(View.GONE);
         MainPage.bottomNavigationView.setVisibility(View.GONE);
-
         if (DetectConnection.checkInternetConnection(getActivity())){
 
        }else {

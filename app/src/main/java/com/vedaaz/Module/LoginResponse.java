@@ -10,7 +10,7 @@ public class LoginResponse {
     @SerializedName("message")
     String message;
 
-    @SerializedName("user_id")
+    @SerializedName("userId")
     String userId;
 
     @SerializedName("cart_id")

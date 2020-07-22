@@ -45,10 +45,38 @@ public class BillResponse {
 
     @SerializedName("days")
     String days;
+
+    @SerializedName("date")
+    String date;
+
     @SerializedName("year")
     String year;
+
     @SerializedName("month")
     String month;
+
+    @SerializedName("totalAmount")
+    String totalAmount;
+
+    @SerializedName("del_status")
+    String del_status;
+
+    @SerializedName("subsription_type")
+    String subsription_type;
+
+    @SerializedName("frequency")
+    String frequency;
+
+    @SerializedName("first_name")
+    String first_name;
+
+    @SerializedName("last_name")
+    String last_name;
+
+    @SerializedName("adhoc_qty")
+    String adhoc_qty;
+
+    // All Getter and Setter method
 
     public String getSuccess() {
         return success;
@@ -176,5 +204,70 @@ public class BillResponse {
 
     public void setMonth(String month) {
         this.month = month;
+    }
+
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public String getDel_status() {
+        return del_status;
+    }
+
+    public void setDel_status(String del_status) {
+        this.del_status = del_status;
+    }
+
+    public String getSubsription_type() {
+        return subsription_type;
+    }
+
+    public void setSubsription_type(String subsription_type) {
+        this.subsription_type = subsription_type;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getAdhoc_qty() {
+        return adhoc_qty;
+    }
+
+    public void setAdhoc_qty(String adhoc_qty) {
+        this.adhoc_qty = adhoc_qty;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

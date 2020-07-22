@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.sdsmdg.tastytoast.TastyToast;
 import com.vedaaz.Activity.MainPage;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,9 +39,11 @@ public class BillDetails extends Fragment {
     View view;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindViews({R.id.customerName, R.id.planName, R.id.startDate, R.id.endDate, R.id.frequency})
+    List<TextView> textViews;
     List<BillResponse> dailyProductResponseList = new ArrayList<>();
     BillDetailsAdapter adapter;
-    String date;
+    String date, planName, startDate, endDate, frequency, customerName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,8 +52,20 @@ public class BillDetails extends Fragment {
         view = inflater.inflate(R.layout.fragment_bill_details, container, false);
         ButterKnife.bind(this, view);
         MainPage.title.setText("Bill Details");
+
         Bundle bundle = getArguments();
-        date=bundle.getString("dat");
+        date=bundle.getString("date");
+        planName=bundle.getString("planName");
+        startDate=bundle.getString("startDate");
+        endDate=bundle.getString("endDate");
+        frequency=bundle.getString("frequency");
+        customerName=bundle.getString("customerName");
+
+        textViews.get(0).setText(customerName);
+        textViews.get(1).setText(planName);
+        textViews.get(2).setText(startDate);
+        textViews.get(3).setText(endDate);
+        textViews.get(4).setText(frequency);
 
         return view;
     }
@@ -57,12 +73,11 @@ public class BillDetails extends Fragment {
     private void getBillList() {
 
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Please Wait");
         progressDialog.setTitle("Data Loading");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
         progressDialog.setCancelable(false);
-
 
         recyclerView.clearOnScrollListeners();
         dailyProductResponseList.clear();

@@ -1,6 +1,7 @@
 package com.vedaaz.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.sdsmdg.tastytoast.TastyToast;
 import com.vedaaz.Activity.MainPage;
+import com.vedaaz.Activity.RazorpayBuyNow;
 import com.vedaaz.Adapter.BillAdapter;
 import com.vedaaz.Adapter.SubscriptionAdapter;
 import com.vedaaz.Extra.DetectConnection;
@@ -40,7 +42,7 @@ import retrofit2.Response;
 public class Bill extends Fragment {
 
 
-     View view;
+    View view;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -65,19 +67,43 @@ public class Bill extends Fragment {
             case R.id.submitBill:
 
                 if (DetectConnection.checkInternetConnection(getActivity())){
-                    float pendingAmount = 0f;
-                    for (int i = 0; i < BillAdapter.productResponseList.size(); i++) {
-                        if (BillAdapter.productResponseList.get(i).getSuccess().equals("Pending")) {
-                            try {
-                                pendingAmount += Float.parseFloat(BillAdapter.productResponseList.get(i).getDaily_amt());
-                            }catch (Exception e){
-                                e.printStackTrace();
+                    try {
+
+                        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+                        progressDialog.setMessage("Please Wait");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+
+                        String pendingAmount = "";
+                        for (int i = 0; i < BillAdapter.productResponseList.size(); i++) {
+                            if (BillAdapter.productResponseList.get(i).getDel_status().equals("pending")) {
+                                try {
+                                    pendingAmount = BillAdapter.productResponseList.get(i).getTotalAmount();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }
+                        progressDialog.dismiss();
 
-                    Log.e("pendingAmount",""+pendingAmount);
-                    Toast.makeText(getActivity(), ""+pendingAmount, Toast.LENGTH_SHORT).show();
+                        try {
+                            if (Integer.parseInt(pendingAmount) > 0) {
+
+                                Intent intent = new Intent(getActivity(), RazorpayBuyNow.class);
+                                intent.putExtra("pendingAmount", pendingAmount);
+                                intent.putExtra("userId", MainPage.userId);
+                                startActivity(intent);
+
+                            } else {
+                                Toasty.normal(getActivity(), "Nothing is Pending", Toasty.LENGTH_SHORT).show();
+                            }
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
 
                 } else {
                     Toasty.warning(getActivity(), "No Internet Connection", Toasty.LENGTH_SHORT);
@@ -86,7 +112,7 @@ public class Bill extends Fragment {
                 break;
         }}
 
-            private void getBillList() {
+    private void getBillList() {
 
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
@@ -94,7 +120,6 @@ public class Bill extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
         progressDialog.setCancelable(false);
-
 
         recyclerView.clearOnScrollListeners();
         dailyProductResponseList.clear();
@@ -111,11 +136,9 @@ public class Bill extends Fragment {
                 if (dailyProductResponseList.size()==0){
                     progressDialog.dismiss();
                     recyclerView.setVisibility(View.GONE);
-
                 }else {
 
                     for (int i=0;i<dailyProductResponseList.size();i++){
-
 
                         adapter = new BillAdapter(getActivity(),dailyProductResponseList);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

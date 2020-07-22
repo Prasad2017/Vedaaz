@@ -26,11 +26,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:icon">
-
-        <activity android:name=".Activity.Welcome"
+        <activity android:name=".Activity.RazorPayWalletNow"></activity>
+        <activity
+            android:name=".Activity.Welcome"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Activity.MainPage"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -38,6 +39,11 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Activity.Login"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activity.RazorpayBuyNow"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="InnerclassSeparator" />
@@ -52,6 +58,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_V3PxrpYQpqgsKn" />
     </application>
 
 </manifest>

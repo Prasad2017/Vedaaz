@@ -375,6 +375,7 @@ public class Login extends AppCompatActivity {
                     editor.apply();
 
                     Common.saveUserData(Login.this,"userId", response.body().getUserId());
+                    Common.saveUserData(Login.this,"mobileNumber", mobileNumber);
                     Common.saveUserData(Login.this,"userMobile", editText.getText().toString().trim());
 
                     Intent verification = new Intent(Login.this, MainPage.class);
@@ -388,7 +389,9 @@ public class Login extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putString("UserLogin","UserLoginSuccessful");
                     editor.apply();
+
                     Common.saveUserData(Login.this,"userId", response.body().getUserId());
+                    Common.saveUserData(Login.this,"mobileNumber", mobileNumber);
                     Common.saveUserData(Login.this,"userMobile", editText.getText().toString().trim());
 
                     Intent verification = new Intent(Login.this, Welcome.class);
@@ -406,7 +409,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toasty.error(Login.this, "Server Error"+t, Toasty.LENGTH_SHORT).show();
+                Toasty.error(Login.this, "Server Error", Toasty.LENGTH_SHORT).show();
             }
         });
 
@@ -462,7 +465,7 @@ public class Login extends AppCompatActivity {
         builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                dialog.dismiss();
                 openSettings();
             }
 
@@ -470,7 +473,7 @@ public class Login extends AppCompatActivity {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
         builder.show();
