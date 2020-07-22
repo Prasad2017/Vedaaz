@@ -1,6 +1,7 @@
 package com.vedaaz.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vedaaz.Activity.MainPage;
+import com.vedaaz.Activity.RazorpayBuyNow;
 import com.vedaaz.Fragment.BillDetails;
 import com.vedaaz.Module.BillResponse;
 import com.vedaaz.R;
@@ -24,36 +26,70 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> {
 
     Context context;
     public static List<BillResponse> productResponseList;
-    public static ArrayList<Integer> selectedList;
-
+    double totalAmount = 0f, amountPayable;
 
     public BillAdapter(Context context, List<BillResponse> productResponseList) {
         this.context = context;
         this.productResponseList = productResponseList;
-
-
+        for(int position = 0 ;position<productResponseList.size();position++){
+            totalAmount = totalAmount + (Double.parseDouble(productResponseList.get(position).getTotalAmount()));
+        }
     }
 
     @NonNull
     @Override
-    public BillAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bill_list, parent, false);
-        return new BillAdapter.MyViewHolder(view);
+        return new MyViewHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BillAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        BillResponse billResponse = productResponseList.get(position);
+
+        if (position==productResponseList.size()-1) {
+            holder.submitBill.setVisibility(View.VISIBLE);
+            String totalAmountPayable = String.valueOf(totalAmount);
+            holder.submitBill.setText("Pay all bills ( "+MainPage.currency+" "+totalAmountPayable+" )");
+            holder.submitBill.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        if (totalAmount > 0f) {
+
+                            Intent intent = new Intent(context, RazorpayBuyNow.class);
+                            intent.putExtra("pendingAmount", totalAmountPayable);
+                            intent.putExtra("userId", MainPage.userId);
+                            context.startActivity(intent);
+
+                        } else {
+                            Toasty.normal(context, "Nothing is Pending", Toasty.LENGTH_SHORT).show();
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        } else
+            holder.submitBill.setVisibility(View.GONE);
+        holder.amt.setText(productResponseList.get(position).getTotalAmount());
+        holder.status.setText(productResponseList.get(position).getDel_status());
 
         String months = productResponseList.get(position).getMonth();
-
         String years = productResponseList.get(position).getYear();
 
-        SimpleDateFormat format1=new SimpleDateFormat("yyyy/MM/dd");
 
         try {
             Calendar cal=Calendar.getInstance();
@@ -68,10 +104,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
             e.printStackTrace();
         }
 
-        holder.amt.setText(productResponseList.get(position).getTotalAmount());
-        holder.status.setText(productResponseList.get(position).getDel_status());
 
-        String finalMonths = months;
         holder.action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,8 +112,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
                 BillDetails billDetails=new BillDetails();
                 Bundle bundle=new Bundle();
                 bundle.putString("year", productResponseList.get(position).getYear());
-                bundle.putString("months", finalMonths);
-                bundle.putString("date", productResponseList.get(position).getYear()+"/"+finalMonths);
+                bundle.putString("months", months);
+                bundle.putString("date", productResponseList.get(position).getYear()+"/"+months);
                 bundle.putString("planName", productResponseList.get(position).getSubsription_type());
                 bundle.putString("startDate", productResponseList.get(position).getStart_date());
                 bundle.putString("endDate", productResponseList.get(position).getEnd_date());
@@ -100,7 +133,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView month, amt, status, action;
+        TextView month, amt, status, action, submitBill;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -108,6 +142,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
             amt=itemView.findViewById(R.id.amt);
             status=itemView.findViewById(R.id.status);
             action=itemView.findViewById(R.id.action);
+            submitBill=itemView.findViewById(R.id.submitBill);
 
         }
     }

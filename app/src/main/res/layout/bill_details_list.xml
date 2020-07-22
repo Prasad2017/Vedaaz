@@ -16,7 +16,7 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="Date"
+            android:hint=""
             android:gravity="center"
             android:background="@drawable/textborder"
             android:textSize="10sp"
@@ -28,7 +28,7 @@
             android:id="@+id/narration"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="Narration"
+            android:hint=""
             android:gravity="center"
             android:textSize="10sp"
             android:textColor="@color/black"
@@ -40,7 +40,7 @@
             android:id="@+id/subscribed"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="Subscribed"
+            android:hint=""
             android:gravity="center"
             android:textSize="9sp"
             android:background="@drawable/textborder"
@@ -64,7 +64,7 @@
             android:id="@+id/addhoc"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="Adhoc"
+            android:hint=""
             android:gravity="center"
             android:textSize="10sp"
             android:textColor="@color/black"
@@ -76,7 +76,7 @@
             android:id="@+id/totalDelivered"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="Total Delivered"
+            android:hint=""
             android:gravity="center"
             android:textSize="10sp"
             android:textColor="@color/black"
@@ -88,12 +88,37 @@
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:hint="Amount"
+            android:hint=""
             android:gravity="center"
             android:textSize="10sp"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:background="@drawable/textborder"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center|right"
+        android:gravity="center|right"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/totalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dhgfhf"
+            android:gravity="center|right"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_weight="1"
             android:layout_gravity="center"/>
 
     </LinearLayout>

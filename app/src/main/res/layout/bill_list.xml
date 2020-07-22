@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,12 +11,14 @@
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
         android:background="@color/white">
+
         <TextView
             android:layout_gravity="center"
             android:id="@+id/month"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Month"
+            android:hint=""
+            android:background="@drawable/textborder"
             android:textSize="15sp"
             android:gravity="center|left"
             android:textColor="@color/black"
@@ -27,9 +30,10 @@
             android:id="@+id/amt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Amount"
+            android:hint=""
             android:textSize="15sp"
             android:gravity="center"
+            android:background="@drawable/textborder"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:padding="10dp"/>
@@ -41,6 +45,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="15sp"
+            android:background="@drawable/textborder"
             android:gravity="center"
             android:textColor="@color/black"
             android:layout_weight="1"
@@ -52,15 +57,29 @@
             android:layout_height="wrap_content"
             android:text="View Bill"
             android:textSize="15sp"
+            android:background="@drawable/textborder"
             android:textColor="@color/black"
             android:layout_weight="1"
-            android:padding="5dp"
             android:gravity="center"
-            android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
+            android:padding="10dp"
             android:layout_gravity="center"/>
-
 
     </LinearLayout>
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="Pay all bills"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/background_rounded"
+        android:id="@+id/submitBill" />
+
+</LinearLayout>

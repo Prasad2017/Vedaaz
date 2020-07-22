@@ -76,6 +76,9 @@ public class BillResponse {
     @SerializedName("adhoc_qty")
     String adhoc_qty;
 
+    @SerializedName("product_name")
+    String product_name;
+
     // All Getter and Setter method
 
     public String getSuccess() {
@@ -269,5 +272,13 @@ public class BillResponse {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 }

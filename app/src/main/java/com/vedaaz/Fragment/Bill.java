@@ -60,7 +60,7 @@ public class Bill extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.submitBill})
+   /* @OnClick({R.id.submitBill})
     public void onClick(View view){
         switch (view.getId()) {
 
@@ -75,19 +75,17 @@ public class Bill extends Fragment {
                         progressDialog.show();
 
                         String pendingAmount = "";
+
                         for (int i = 0; i < BillAdapter.productResponseList.size(); i++) {
-                            if (BillAdapter.productResponseList.get(i).getDel_status().equals("pending")) {
-                                try {
-                                    pendingAmount = BillAdapter.productResponseList.get(i).getTotalAmount();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
+
+                            pendingAmount = BillAdapter.productResponseList.get(i).getTotalAmount();
+
                         }
+
                         progressDialog.dismiss();
 
                         try {
-                            if (Integer.parseInt(pendingAmount) > 0) {
+                            if (Double.parseDouble(pendingAmount) > 0f) {
 
                                 Intent intent = new Intent(getActivity(), RazorpayBuyNow.class);
                                 intent.putExtra("pendingAmount", pendingAmount);
@@ -110,7 +108,7 @@ public class Bill extends Fragment {
                 }
 
                 break;
-        }}
+        }}*/
 
     private void getBillList() {
 

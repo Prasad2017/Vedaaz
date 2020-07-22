@@ -201,7 +201,7 @@
             android:text="Date"
             android:gravity="center"
             android:background="@drawable/textborder"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:layout_gravity="center"/>
@@ -211,7 +211,7 @@
             android:layout_height="30dp"
             android:text="Narration"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:background="@drawable/textborder"
             android:layout_weight="1"
@@ -222,7 +222,7 @@
             android:layout_height="30dp"
             android:text="Subscribed"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:background="@drawable/textborder"
             android:textColor="@color/black"
             android:layout_weight="1"
@@ -233,7 +233,7 @@
             android:layout_height="30dp"
             android:text="Pause"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:background="@drawable/textborder"
             android:layout_weight="1"
@@ -244,7 +244,7 @@
             android:layout_height="30dp"
             android:text="Adhoc"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:background="@drawable/textborder"
             android:layout_weight="1"
@@ -255,7 +255,7 @@
             android:layout_height="30dp"
             android:text="Total Delivered"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:background="@drawable/textborder"
             android:layout_weight="1"
@@ -266,7 +266,7 @@
             android:layout_height="30dp"
             android:text="Amount"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:background="@drawable/textborder"
@@ -278,5 +278,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerView"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/red_600"/>
 
 </LinearLayout>
