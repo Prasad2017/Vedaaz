@@ -1,5 +1,7 @@
 package com.vedaaz.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,9 +13,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.Editable;
@@ -29,6 +33,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -48,6 +61,9 @@ import com.vedaaz.Module.LoginResponse;
 import com.vedaaz.R;
 import com.vedaaz.Retrofit.Api;
 import com.vedaaz.Retrofit.ApiInterface;
+import com.vedaaz.helper.AppSignatureHelper;
+import com.vedaaz.interfaces.OtpReceivedInterface;
+import com.vedaaz.receiver.SmsBroadcastReceiver;
 import com.viewpagerindicator.LinePageIndicator;
 
 import org.json.JSONException;
@@ -55,6 +71,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -73,7 +90,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+        OtpReceivedInterface, GoogleApiClient.OnConnectionFailedListener {
+
 
     @BindView(R.id.loginLinearLayout)
     LinearLayout loginLinearLayout;
@@ -89,7 +108,7 @@ public class Login extends AppCompatActivity {
     @BindView(R.id.txtmobileNumber)
     TextView txtmobileNumber;
     @BindView(R.id.verify)
-    Button verify;
+    TextView verify;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     private String OTP = "", code;
@@ -101,6 +120,10 @@ public class Login extends AppCompatActivity {
     private static int NUM_PAGES = 0;
     AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
     public static final String msgsend="http://synergytech.co.in/androidApp/Vedaaz/Customer/SMS.php";
+    GoogleApiClient mGoogleApiClient;
+    SmsBroadcastReceiver mSmsBroadcastReceiver;
+    CountDownTimer cTimer = null;
+    private String HASH_KEY;
 
 
 
@@ -109,6 +132,23 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        // init broadcast receiver
+        mSmsBroadcastReceiver = new SmsBroadcastReceiver();
+
+        //set google api client for hint request
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.CREDENTIALS_API)
+                .build();
+
+        mSmsBroadcastReceiver.setOnOtpListeners(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION);
+        getApplicationContext().registerReceiver(mSmsBroadcastReceiver, intentFilter);
+
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestPermission();
         verify.setClickable(false);
@@ -299,24 +339,17 @@ public class Login extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     private void LoginData(final String mobileNumber) {
 
-        Random rand = new Random();
-        System.out.printf("%04d%n", rand.nextInt(10000));
-        OTP = String.format("%04d", rand.nextInt(10000));
-        Log.e("OTP", "" + OTP);
-        String message = "Your OTP is: " + OTP;
+        HASH_KEY = (String) new AppSignatureHelper(this).getAppSignatures().get(0);
+        HASH_KEY = HASH_KEY.replace("+", "%252B");
+        OTP= new DecimalFormat("0000").format(new Random().nextInt(9999));
+        String message = "<#> Your Vedazz verification OTP code is "+ OTP +". Please DO NOT share this OTP with anyone.\n" + HASH_KEY;
+
         String encoded_message = URLEncoder.encode(message);
         Log.e("OTP", "" + OTP);
 
         RequestParams requestParams = new RequestParams();
         requestParams.put("number", editText.getText().toString().trim());
         requestParams.put("message", encoded_message);
-
-
-        // Log.e("encodedmessage",""+encoded_message);
-        // Log.e("number",""+edt_mobileno.getText().toString());
-
-        Log.e("asyncHttpClient1", "" + asyncHttpClient);
-        // Toast.makeText(getApplicationContext(), "asyn" + asyncHttpClient, Toast.LENGTH_LONG).show();
 
         asyncHttpClient.get(msgsend, requestParams, new AsyncHttpResponseHandler() {
             @Override
@@ -328,7 +361,7 @@ public class Login extends AppCompatActivity {
                     if (jsonObject.getString("success").equals("1")) {
                         cardViews.get(0).setVisibility(View.GONE);
                         cardViews.get(1).setVisibility(View.VISIBLE);
-
+                        startSMSListener();
                     } else {
                         Toasty.normal(Login.this, "No Internet Connection", Toasty.LENGTH_LONG).show();
                     }
@@ -367,6 +400,7 @@ public class Login extends AppCompatActivity {
                 String data = Objects.requireNonNull(response.body()).getSuccess();
 
                 if (data.equalsIgnoreCase("1")) {
+
                     progressDialog.dismiss();
                     Toasty.success(Login.this, ""+response.body().getMessage(), Toasty.LENGTH_SHORT).show();
                     pref = getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -459,13 +493,14 @@ public class Login extends AppCompatActivity {
     }
 
     private void showSettingsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Login.this);
         builder.setTitle("Need Permissions");
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
         builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                dialog.cancel();
                 openSettings();
             }
 
@@ -473,7 +508,7 @@ public class Login extends AppCompatActivity {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                dialog.cancel();
             }
         });
         builder.show();
@@ -507,5 +542,66 @@ public class Login extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }
+
+    public void startSMSListener() {
+        SmsRetrieverClient mClient = SmsRetriever.getClient(this);
+        Task<Void> mTask = mClient.startSmsRetriever();
+        mTask.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override public void onSuccess(Void aVoid) {
+                cardViews.get(0).setVisibility(View.GONE);
+                cardViews.get(1).setVisibility(View.VISIBLE);
+            }
+        });
+        mTask.addOnFailureListener(new OnFailureListener() {
+            @Override public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Login.this, "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onOtpReceived(String otp) {
+      //  Toast.makeText(this, "Otp Received " + otp, Toast.LENGTH_LONG).show();
+        otpTextView.setOTP(otp);
+    }
+
+    @Override
+    public void onOtpTimeout() {
+
+    }
+
+    void startTimer() {
+        cTimer = new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+              //  timer.setText(String.valueOf((int) (millisUntilFinished/1000)));
+            }
+            public void onFinish() {
+                cardViews.get(0).setVisibility(View.GONE);
+                cardViews.get(1).setVisibility(View.VISIBLE);
+            }
+        };
+        cTimer.start();
+    }
+
+    //cancel timer
+    void cancelTimer() {
+        if(cTimer!=null)
+            cTimer.cancel();
     }
 }

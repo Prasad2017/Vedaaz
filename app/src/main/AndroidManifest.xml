@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
+        android:name=".Applications.SmsVerificationApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -26,27 +27,33 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:icon">
-        <activity android:name=".Activity.RazorPayWalletNow"></activity>
+
+        <activity android:name=".Activity.RazorPayWalletNow" />
+
         <activity
             android:name=".Activity.Welcome"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".Activity.MainPage"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".Activity.Login"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".Activity.RazorpayBuyNow"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".Activity.Splash"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -61,7 +68,8 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_V3PxrpYQpqgsKn" />
+            android:value="rzp_live_yUXKm7UDSAkCNk" />
+
     </application>
 
 </manifest>

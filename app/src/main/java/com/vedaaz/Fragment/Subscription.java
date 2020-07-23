@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sdsmdg.tastytoast.TastyToast;
@@ -313,11 +314,13 @@ public class Subscription extends Fragment {
         Log.d("onStart", "called");
         MainPage.logo.setVisibility(View.GONE);
         MainPage.title.setVisibility(View.VISIBLE);
-        MainPage.back.setVisibility(View.VISIBLE);
-        MainPage.menu.setVisibility(View.GONE);
+        ((MainPage) getActivity()).lockUnlockDrawer(1);
         MainPage.searchLayout.setVisibility(View.GONE);
-        MainPage.bottomNavigationView.setVisibility(View.GONE);
-
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)MainPage.title.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+params.addRule(RelativeLayout.CENTER_VERTICAL);
+        params.addRule(RelativeLayout.RIGHT_OF, R.id.back);
+        MainPage.title.setLayoutParams(params);
         if (DetectConnection.checkInternetConnection(getActivity())){
         }else {
             TastyToast.makeText(getActivity(), "No Internet Connection", TastyToast.LENGTH_SHORT, TastyToast.DEFAULT).show();

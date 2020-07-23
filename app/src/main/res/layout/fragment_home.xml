@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey_200"
-    android:layout_marginTop="40dp"
-    android:layout_marginBottom="70dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
 
     <RelativeLayout
@@ -15,8 +15,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,27 +26,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
-
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardview_homefragmnet1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/cardview_homefragmnet1"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="3dp"
-                        >
+                        android:layout_margin="10dp"
+                        android:background="@color/black"
+                        android:elevation="5dp"
+                        app:cardMaxElevation="5dp"
+                        app:cardElevation="5dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="5dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginRight="1dp"
-
+                            android:layout_margin="5dp"
+                            android:padding="5dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -144,9 +139,7 @@
                         android:orientation="horizontal"
                         android:layout_below="@+id/cardview_homefragmnet1"
                         android:id="@+id/recyclerSlider"
-                        android:layout_margin="10dp">
-                    </androidx.recyclerview.widget.RecyclerView>
-
+                        android:layout_margin="10dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -163,15 +156,13 @@
 
 
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/recyclerDailyProduct"
-                                android:orientation="horizontal"
-                                android:layout_margin="10dp"
-                                android:layout_below="@+id/tv_allmilkhomefragment">
-
-                            </androidx.recyclerview.widget.RecyclerView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recyclerDailyProduct"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_below="@+id/tv_allmilkhomefragment"/>
 
 
                     <TextView
@@ -183,20 +174,16 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="10dp"/>
 
-                    </TextView>
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/gridview_categoryHome"
-                                android:numColumns="3"
-                                android:columnWidth="4dp"
-                                android:layout_margin="10dp"
-                                android:layout_below="@+id/tv_categorieshomefragment">
-
-                            </androidx.recyclerview.widget.RecyclerView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/gridview_categoryHome"
+                        android:numColumns="3"
+                        android:columnWidth="4dp"
+                        android:layout_margin="10dp"
+                        android:layout_below="@+id/tv_categorieshomefragment"/>
 
 
                     <androidx.cardview.widget.CardView
@@ -204,12 +191,12 @@
                         android:layout_height="190dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
+                        card_view:cardBackgroundColor="#F9CC11"
                         android:id="@+id/cardview_homefragmnet5"
                         android:layout_below="@+id/gridview_categoryHome"
                         android:layout_marginRight="10dp"
                         card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="3dp"
-                        >
+                        card_view:cardElevation="3dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -218,7 +205,6 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginLeft="1dp"
                             android:layout_marginRight="1dp"
-                            android:background="#F9CC11"
                             android:orientation="vertical">
 
                             <TextView
@@ -226,7 +212,6 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textSize="22dp"
-
                                 android:layout_marginTop="8dp"
                                 android:textColor="@color/white"
                                 android:textStyle="bold"
@@ -245,7 +230,7 @@
                             </TextView>
 
 
-                            <Button
+                            <TextView
                                 android:layout_width="220dp"
                                 android:layout_height="35dp"
                                 android:text="Click to know more"
@@ -253,10 +238,11 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_gravity="center"
                                 android:textSize="15dp"
+                                android:textColor="@color/black"
                                 style="@style/ColoredButtonAppcompat"
                                 android:gravity="center">
 
-                            </Button>
+                            </TextView>
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -312,30 +298,19 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        card_view:cardCornerRadius="10dp"
+                        card_view:cardCornerRadius="7dp"
                         android:id="@+id/cardview_homefragmnet7"
                         android:layout_below="@+id/cardview_homefragmnet6"
-                        card_view:cardElevation="3dp"
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginRight="1dp"
+                        card_view:cardElevation="3dp">
 
 
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="fill_parent"
+                            <com.github.siyamed.shapeimageview.RoundedImageView
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/bestsummercooleroffers">
+                                android:scaleType="centerCrop"
+                                app:siRadius="7dp"
+                                android:src="@drawable/bestsummercooleroffers"/>
 
-                            </ImageView>
-                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -346,26 +321,18 @@
                         android:id="@+id/cardview_homefragmnet8"
                         android:layout_below="@+id/cardview_homefragmnet7"
                         android:layout_marginRight="10dp"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="3dp"
-                        >
+                        card_view:cardCornerRadius="7dp"
+                        android:layout_marginBottom="100dp"
+                        card_view:cardElevation="3dp">
 
-                        <LinearLayout
+                        <com.github.siyamed.shapeimageview.RoundedImageView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginRight="1dp"
-                            android:orientation="vertical">
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:siRadius="7dp"
+                            android:src="@drawable/breakfastbanner"/>
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/breakfastbanner">
 
-                            </ImageView>
-                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
 
@@ -376,7 +343,6 @@
         </androidx.core.widget.NestedScrollView>
 
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -384,8 +350,7 @@
             android:orientation="horizontal"
             android:visibility="gone"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
-            >
+            android:background="@color/colorPrimary">
 
             <ImageView
                 android:layout_width="30dp"
@@ -411,9 +376,6 @@
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
-
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -421,9 +383,8 @@
                         android:layout_marginRight="5dp"
                         android:text="Rs"
                         android:textColor="@color/marun"
-                        android:textSize="15dp">
+                        android:textSize="15dp"/>
 
-                    </TextView>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -431,9 +392,8 @@
                         android:id="@+id/tv_totlapriceviewcartappbarmain"
                         android:text="500"
                         android:textColor="@color/marun"
-                        android:textSize="14dp">
+                        android:textSize="14dp"/>
 
-                    </TextView>
                 </LinearLayout>
 
 
@@ -451,7 +411,7 @@
                         android:layout_marginRight="5dp"
                         android:text=""
                         android:textColor="@color/marun"
-                        android:textSize="14dp"></TextView>
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -461,9 +421,8 @@
                         android:id="@+id/tv_totalitemsviewcartappbarmain"
                         android:text=""
                         android:textColor="@color/marun"
-                        android:textSize="14dp">
+                        android:textSize="14dp"/>
 
-                    </TextView>
                 </LinearLayout>
 
 
@@ -489,8 +448,6 @@
 
 
     </RelativeLayout>
-
-
 
 
 </FrameLayout>

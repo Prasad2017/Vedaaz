@@ -48,19 +48,22 @@ import java.io.File;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 public class MainPage extends AppCompatActivity {
 
     boolean doubleBackToExitPressedOnce = false;
     public static ImageView menu, back, logo, notification;
     public static TextView title;
-    public static RelativeLayout titleLayout, relative_showcart;
+    public static RelativeLayout titleLayout;
     public static LinearLayout searchLayout;
     public static TextView notificationCount;
     public static BottomNavigationView bottomNavigationView;
     public NavigationView navigationView;
     public static DrawerLayout drawerLayout;
     public static String userId, mobileNumber,first_name, cartId, userName, userCityId, userAreaId, walletAmount, currency = "₹";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,19 +99,19 @@ public class MainPage extends AppCompatActivity {
                         return true;
 
                     case R.id.category_homepage:
-                    loadFragment(new AllCategory(), true);
+                    loadFragment(new AllCategory(), false);
                         return true;
 
                     case R.id.offer_homepage:
-                        loadFragment(new Offers(), true);
+                        loadFragment(new Offers(), false);
                         return true;
 
                     case R.id.bill_homepage:
-                    loadFragment(new Bill(), true);
+                    loadFragment(new Bill(), false);
                         return true;
 
                     case R.id.basket_homepage:
-                    loadFragment(new Basket(), true);
+                    loadFragment(new Basket(), false);
                         return true;
                 }
                 return false;
@@ -121,7 +124,7 @@ public class MainPage extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_accout:
-                        loadFragment(new Account(),true);
+                        loadFragment(new Account(),false);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
@@ -179,18 +182,13 @@ public class MainPage extends AppCompatActivity {
                         Button btncancel=(Button) dialog11.findViewById(R.id.btn_Cancel);
                         ImageView img_exit=(ImageView)dialog11.findViewById(R.id.img_dialogexit);
 
-
-
                         btnok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
-
                                 dialog11.dismiss();
 
                             }
                         });
-
 
                         btncancel.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -226,8 +224,7 @@ public class MainPage extends AppCompatActivity {
                         });
 
                         dialog11.show();
-                        //drawerLayout.closeDrawer(GravityCompat.START);
-
+                        drawerLayout.closeDrawer(GravityCompat.START);
 
                         break;
 
@@ -316,7 +313,7 @@ public class MainPage extends AppCompatActivity {
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Press back once more to exit", Toast.LENGTH_SHORT).show();
+        Toasty.normal(MainPage.this, "Press back once more to exit", Toasty.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -333,17 +330,12 @@ public class MainPage extends AppCompatActivity {
         if (lockMode == DrawerLayout.LOCK_MODE_LOCKED_CLOSED) {
             menu.setVisibility(View.GONE);
             back.setVisibility(View.VISIBLE);
-
+            MainPage.bottomNavigationView.setVisibility(View.GONE);
         } else {
-            menu.setVisibility(View.GONE);
+            menu.setVisibility(View.VISIBLE);
             back.setVisibility(View.GONE);
+            MainPage.bottomNavigationView.setVisibility(View.VISIBLE);
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        Intent intent =new Intent(MainPage.this, MainPage.class);
-//        startActivity(intent);
-    }
 }

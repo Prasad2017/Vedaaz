@@ -105,23 +105,7 @@
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp">
 
-                           <!-- <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:textSize="18sp"
-                                android:layout_margin="5dp"
-                                android:padding="3dp"
-                                android:textColor="@color/black"
-                                android:text="+91"
-                                tools:ignore="HardcodedText" />
 
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="wrap_content"
-                                android:background="@color/light_white"/>
--->
                             <EditText
                                 android:id="@+id/mobileNumber"
                                 android:layout_width="match_parent"
@@ -155,7 +139,7 @@
                             android:gravity="center"
                             tools:ignore="HardcodedText" />
 
-                        <Button
+                        <TextView
                             android:id="@+id/send"
                             android:layout_width="200dp"
                             android:layout_height="45dp"
@@ -164,7 +148,8 @@
                             android:padding="5dp"
                             android:layout_margin="10dp"
                             android:textColor="@color/white"
-                            android:text="continue"
+                            android:text="Continue"
+                            android:gravity="center"
                             android:layout_gravity="center"
                             android:textSize="18sp"
                             tools:ignore="HardcodedText" />
@@ -274,7 +259,7 @@
                             android:visibility="gone"
                             tools:ignore="HardcodedText" />
 
-                        <Button
+                        <TextView
                             android:id="@+id/verify"
                             android:layout_width="200dp"
                             android:layout_height="45dp"
@@ -283,7 +268,8 @@
                             android:padding="5dp"
                             android:layout_margin="25sp"
                             android:textColor="@color/white"
-                            android:text="Submit"
+                            android:text="Verify"
+                            android:gravity="center"
                             android:layout_gravity="center"
                             android:textSize="18sp"
                             tools:ignore="HardcodedText"/>

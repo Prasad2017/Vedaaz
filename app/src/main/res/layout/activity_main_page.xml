@@ -190,18 +190,6 @@
 
         </LinearLayout>
 
-       <!-- <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/white"
-            app:menu="@menu/menu_bottom_navigation"
-            app:itemIconSize="25dp"
-            app:itemIconTint="@color/colorPrimary"
-            />-->
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
@@ -210,6 +198,8 @@
             android:layout_gravity="bottom"
             android:background="@color/white"
             app:menu="@menu/menu_bottom_navigation"
+            app:itemIconTint="@drawable/color_state_white_2"
+            app:itemTextColor="@drawable/color_state_white_2"
             app:itemIconSize="25dp"/>
 
     </RelativeLayout>

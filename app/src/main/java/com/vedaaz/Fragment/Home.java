@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.sdsmdg.tastytoast.TastyToast;
 import com.vedaaz.Activity.MainPage;
@@ -39,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Home extends Fragment {
-//mvc , singletone , library
+
     View view;
     @BindView(R.id.recyclerDailyProduct)
     RecyclerView recyclerView;
@@ -233,10 +234,12 @@ public class Home extends Fragment {
         MainPage.logo.setVisibility(View.VISIBLE);
         MainPage.title.setVisibility(View.GONE);
         MainPage.searchLayout.setVisibility(View.VISIBLE);
-        MainPage.back.setVisibility(View.GONE);
-        MainPage.menu.setVisibility(View.VISIBLE);
-        MainPage.bottomNavigationView.setVisibility(View.VISIBLE);
-
+        ((MainPage) getActivity()).lockUnlockDrawer(0);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)MainPage.title.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+params.addRule(RelativeLayout.CENTER_VERTICAL);
+        params.addRule(RelativeLayout.RIGHT_OF, R.id.img_menu);
+        MainPage.title.setLayoutParams(params);
         if (DetectConnection.checkInternetConnection(getActivity())){
             getProduct();
             getDailyProduct();

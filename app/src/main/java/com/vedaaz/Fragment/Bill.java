@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.sdsmdg.tastytoast.TastyToast;
@@ -169,10 +170,12 @@ public class Bill extends Fragment {
         MainPage.logo.setVisibility(View.GONE);
         MainPage.title.setVisibility(View.VISIBLE);
         MainPage.searchLayout.setVisibility(View.GONE);
-        MainPage.back.setVisibility(View.VISIBLE);
-        MainPage.menu.setVisibility(View.GONE);
-        MainPage.bottomNavigationView.setVisibility(View.GONE);
-
+        ((MainPage) getActivity()).lockUnlockDrawer(0);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)MainPage.title.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+params.addRule(RelativeLayout.CENTER_VERTICAL);
+        params.addRule(RelativeLayout.RIGHT_OF, R.id.img_menu);
+        MainPage.title.setLayoutParams(params);
         if (DetectConnection.checkInternetConnection(getActivity())){
             getBillList();
         }else {
