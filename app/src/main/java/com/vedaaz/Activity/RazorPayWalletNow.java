@@ -10,13 +10,14 @@ import android.widget.Toast;
 
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
+import com.vedaaz.Extra.Common;
 import com.vedaaz.R;
 
 import org.json.JSONObject;
 
 public class RazorPayWalletNow extends AppCompatActivity implements PaymentResultListener {
 
-    public String pendingAmount, userId;
+    public String amount, userId;
 
 
     @Override
@@ -27,11 +28,11 @@ public class RazorPayWalletNow extends AppCompatActivity implements PaymentResul
         Intent intent = getIntent();
         try {
             userId = intent.getStringExtra("userId");
-            pendingAmount = intent.getStringExtra("pendingAmount");
+            amount = intent.getStringExtra("amount");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        startPayment(pendingAmount);
+        startPayment(amount);
 
     }
 
@@ -72,6 +73,7 @@ public class RazorPayWalletNow extends AppCompatActivity implements PaymentResul
     @Override
     public void onPaymentSuccess(String razorpayPaymentID) {
 
+        Common.addWallet(RazorPayWalletNow.this, razorpayPaymentID, amount);
         finish();
 
     }

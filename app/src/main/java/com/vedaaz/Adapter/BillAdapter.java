@@ -98,7 +98,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
             cal.set(Calendar.MONTH,monthnum);
             String month_name = month_date.format(cal.getTime());
             Log.e("",""+month_name);
-            holder.month.setText(month_name+"/"+years);
+            holder.month.setText(month_name+" "+years);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,7 +114,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
                 bundle.putString("year", productResponseList.get(position).getYear());
                 bundle.putString("months", months);
                 bundle.putString("date", productResponseList.get(position).getYear()+"/"+months);
-                bundle.putString("planName", productResponseList.get(position).getSubsription_type());
+                bundle.putString("planName", productResponseList.get(position).getDaily_product_name());
                 bundle.putString("startDate", productResponseList.get(position).getStart_date());
                 bundle.putString("endDate", productResponseList.get(position).getEnd_date());
                 bundle.putString("customerName", productResponseList.get(position).getFirst_name()+" "+productResponseList.get(position).getLast_name());

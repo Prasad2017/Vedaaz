@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
+import com.vedaaz.Extra.Common;
 import com.vedaaz.R;
 
 
@@ -76,6 +77,7 @@ public class RazorpayBuyNow extends AppCompatActivity implements PaymentResultLi
     @Override
     public void onPaymentSuccess(String razorpayPaymentID) {
 
+        Common.addPendingAmount(RazorpayBuyNow.this, razorpayPaymentID, pendingAmount);
         finish();
 
     }

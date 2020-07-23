@@ -10,6 +10,9 @@ public class AllList {
     @SerializedName("dialyProductSuccess")
     private List<DailyProductResponse> dailyProductResponseList;
 
+    @SerializedName("profileSuccess")
+    private List<ProfileResponse> profileResponseList ;
+
     @SerializedName("productSuccess")
     private List<ProductResponse> productResponseList;
 
@@ -105,5 +108,13 @@ public class AllList {
 
     public void setBillDetailsResonseList(List<BillResponse> billDetailsResonseList) {
         this.billDetailsResonseList = billDetailsResonseList;
+    }
+
+    public List<ProfileResponse> getProfileResponseList() {
+        return profileResponseList;
+    }
+
+    public void setProfileResponseList(List<ProfileResponse> profileResponseList) {
+        this.profileResponseList = profileResponseList;
     }
 }

@@ -65,8 +65,7 @@ public class BillDetailsAdapter extends RecyclerView.Adapter<BillDetailsAdapter.
             holder.textViews.get(7).setText("Total Amount : "+MainPage.currency+" "+totalAmount);
         } else
 
-        holder.textViews.get(7).setVisibility(View.GONE);
-        holder.textViews.get(0).setText(productResponseList.get(position).getDate());
+            holder.textViews.get(7).setVisibility(View.GONE);
         holder.textViews.get(1).setText(productResponseList.get(position).getDaily_product_name());
         holder.textViews.get(2).setText(productResponseList.get(position).getDailyQty());
         holder.textViews.get(3).setText("");
@@ -75,6 +74,17 @@ public class BillDetailsAdapter extends RecyclerView.Adapter<BillDetailsAdapter.
 
         double amount = Double.parseDouble(productResponseList.get(position).getDaily_amt());
         holder.textViews.get(6).setText(""+amount);
+
+        try {
+            DateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd");
+            DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String inputDateStr=productResponseList.get(position).getDate();
+            Date date = inputFormat.parse(inputDateStr);
+            String outputDateStr = outputFormat.format(date);
+            holder.textViews.get(0).setText(outputDateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 

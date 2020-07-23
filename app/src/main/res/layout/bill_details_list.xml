@@ -19,7 +19,7 @@
             android:hint=""
             android:gravity="center"
             android:background="@drawable/textborder"
-            android:textSize="10sp"
+            android:textSize="8sp"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:layout_gravity="center"/>

@@ -18,10 +18,12 @@ import com.vedaaz.Activity.MainPage;
 import com.vedaaz.Adapter.DilayAdapter;
 import com.vedaaz.Adapter.HomeSliderAdapter;
 import com.vedaaz.Adapter.ProductAdapter;
+import com.vedaaz.Extra.Common;
 import com.vedaaz.Extra.DetectConnection;
 import com.vedaaz.Module.AllList;
 import com.vedaaz.Module.DailyProductResponse;
 import com.vedaaz.Module.ProductResponse;
+import com.vedaaz.Module.ProfileResponse;
 import com.vedaaz.R;
 import com.vedaaz.Retrofit.Api;
 import com.vedaaz.Retrofit.ApiInterface;
@@ -50,10 +52,9 @@ public class Home extends Fragment {
     DilayAdapter adapter;
     ProductAdapter productAdapter;
     HomeSliderAdapter homeSliderAdapter;
- /*   @BindView(R.id.gridview_categoryHome)
-    RecyclerView gridview_categoryHome;*/
-   /* List<ProductResponse> productResponseList = new ArrayList<>();
-    DilayAdapter adapter;*/
+    List<ProfileResponse> profileResponseList = new ArrayList<>();
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -239,10 +240,46 @@ public class Home extends Fragment {
         if (DetectConnection.checkInternetConnection(getActivity())){
             getProduct();
             getDailyProduct();
-         //   getSlider();
+            getProfile();
         }else {
             TastyToast.makeText(getActivity(), "No Internet Connection", TastyToast.LENGTH_SHORT, TastyToast.DEFAULT).show();
         }
+    }
+
+    private void getProfile() {
+
+        ApiInterface apiInterface = Api.getClient().create(ApiInterface.class);
+        Call<AllList> call = apiInterface.getProfile(MainPage.userId);
+        call.enqueue(new Callback<AllList>() {
+            @Override
+            public void onResponse(Call<AllList> call, Response<AllList> response) {
+
+                profileResponseList = response.body().getProfileResponseList();
+                if (profileResponseList.size()==0){
+
+                } else {
+
+                    for (int i=0;i<profileResponseList.size();i++) {
+
+                        MainPage.first_name = profileResponseList.get(i).getFirstName();
+                        MainPage.mobileNumber = profileResponseList.get(i).getUserContact();
+                        MainPage.walletAmount = profileResponseList.get(i).getWalletAmount();
+
+                        Common.saveUserData(getActivity(), "first_name", MainPage.first_name);
+                        Common.saveUserData(getActivity(), "mobileNumber", MainPage.mobileNumber);
+                        Common.saveUserData(getActivity(), "walletAmount", MainPage.walletAmount);
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<AllList> call, Throwable t) {
+                Log.e("Error", ""+t.getMessage());
+            }
+        });
+
     }
 
 
