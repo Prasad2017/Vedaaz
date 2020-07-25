@@ -233,11 +233,11 @@ public class Home extends Fragment {
         Log.d("onStart", "called");
         MainPage.logo.setVisibility(View.VISIBLE);
         MainPage.title.setVisibility(View.GONE);
-        MainPage.searchLayout.setVisibility(View.VISIBLE);
+        MainPage.searchLayout.setVisibility(View.GONE);
         ((MainPage) getActivity()).lockUnlockDrawer(0);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)MainPage.title.getLayoutParams();
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-params.addRule(RelativeLayout.CENTER_VERTICAL);
+        params.addRule(RelativeLayout.CENTER_VERTICAL);
         params.addRule(RelativeLayout.RIGHT_OF, R.id.img_menu);
         MainPage.title.setLayoutParams(params);
         if (DetectConnection.checkInternetConnection(getActivity())){

@@ -6,11 +6,10 @@
     android:orientation="vertical"
     xmlns:card_view="http://schemas.android.com/tools">
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
         android:layout_marginTop="0dp">
 
 
@@ -88,8 +87,8 @@
                         android:layout_width="60dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginLeft="1dp"
-                        android:layout_marginTop="25dp"
                         android:padding="0dp"
                         android:src="@drawable/logo"
                         android:layout_marginBottom="5dp"
@@ -100,8 +99,8 @@
                         android:layout_width="50dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
-                        android:layout_marginTop="25dp"
                         android:padding="5dp"
+                        android:layout_centerVertical="true"
                         android:layout_marginBottom="5dp"
                         android:src="@drawable/ic_event"
                         android:tint="@color/black"
@@ -129,13 +128,12 @@
                     android:layout_marginRight="10dp"
                     android:background="@color/white"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     android:id="@+id/searchLayout">
-
-
 
                     <SearchView
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="40dp"
                         android:id="@+id/serchview_homepage"
                         android:queryHint="Search 1000+ products"
                         android:queryBackground="@color/transparent"
@@ -143,10 +141,10 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:background="@drawable/btn_searchview_order"></SearchView>
-
+                        android:background="@drawable/btn_searchview_order"/>
 
                 </LinearLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

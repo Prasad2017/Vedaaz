@@ -194,9 +194,9 @@ public class MainPage extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
 
-                                Common.saveUserData(getApplicationContext(), "user_id", "");
+                                Common.saveUserData(getApplicationContext(), "userId", "");
 
-                                File file1 = new File("data/data/com.example.vedaaz/shared_prefs/admin.xml");
+                                File file1 = new File("data/data/com.vedaaz/shared_prefs/user.xml");
                                 if (file1.exists()) {
 
                                     SharedPreferences preferences =getSharedPreferences("services", Context.MODE_PRIVATE);

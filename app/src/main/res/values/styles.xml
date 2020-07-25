@@ -9,7 +9,7 @@
         <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowBackground">#FAFAFA</item>
+        <item name="android:windowBackground">#FFF</item>
 
     </style>
 

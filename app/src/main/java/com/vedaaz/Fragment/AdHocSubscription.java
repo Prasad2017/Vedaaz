@@ -53,6 +53,8 @@ import retrofit2.Response;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class AdHocSubscription extends Fragment {
+
+
     View view;
     DatePickerDialog datePickerDialog;
     int year;
@@ -65,13 +67,9 @@ public class AdHocSubscription extends Fragment {
     List<ImageView> imageViews;
     @BindView(R.id.quantity)
     EditText editText;
-    public AlertDialog dialogBuilder;
     RecyclerView recyclerSubsciber;
-
     List<SubscriptionResponse> dailyProductResponseList = new ArrayList<>();
     SubscriptionListAdapter adapter;
-
-
     @BindView(R.id.layout1)
     LinearLayout linearLayout;
     @BindView(R.id.recyclerView)
@@ -122,7 +120,6 @@ public class AdHocSubscription extends Fragment {
             case R.id.selectdate:
             case R.id.tvselectDate:
 
-
                 calendar = Calendar.getInstance();
                 year = calendar.get(Calendar.YEAR);
                 month = calendar.get(Calendar.MONTH);
@@ -143,11 +140,11 @@ public class AdHocSubscription extends Fragment {
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.show();
+
                 break;
 
             case R.id.endselectdate:
             case R.id.tvendselectDate:
-
 
                 calendar = Calendar.getInstance();
                 year = calendar.get(Calendar.YEAR);
@@ -168,7 +165,9 @@ public class AdHocSubscription extends Fragment {
                                 imageViews.get(2).setVisibility(View.GONE);
                             }
                         }, year, month, dayOfMonth);
+
                 datePickerDialog.show();
+
                 break;
 
 
@@ -181,6 +180,7 @@ public class AdHocSubscription extends Fragment {
     }
 
     private void getSubscription() {
+
         dailyProductResponseList.clear();
 
         ApiInterface apiInterface = Api.getClient().create(ApiInterface.class);
@@ -194,7 +194,6 @@ public class AdHocSubscription extends Fragment {
 
                 if (dailyProductResponseList.size()==0){
                     recyclerSubsciber.setVisibility(View.GONE);
-
                 }else {
 
                     planIdList = new String[dailyProductResponseList.size()];
@@ -222,8 +221,7 @@ public class AdHocSubscription extends Fragment {
         });
     }
 
-    public void adHocSubscription( String startdate, String endate, String qty,String  subid)
-    {
+    public void adHocSubscription( String startdate, String endate, String qty,String  subid) {
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
@@ -231,8 +229,9 @@ public class AdHocSubscription extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
         progressDialog.setCancelable(true);
+
         ApiInterface apiInterface = Api.getClient().create(ApiInterface.class);
-        Call<LoginResponse> call = apiInterface.adHocSubscription(MainPage.userId, startdate, endate, qty,subid);
+        Call<LoginResponse> call = apiInterface.adHocSubscription(MainPage.userId, startdate, endate, qty, subid);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -241,13 +240,12 @@ public class AdHocSubscription extends Fragment {
 
                 if (data.equalsIgnoreCase("1")) {
                     Toasty.success(getActivity(), ""+response.body().getMessage(), Toasty.LENGTH_SHORT).show();
-                    // progressDialog.dismiss();
+                     progressDialog.dismiss();
                     ((MainPage)getActivity()).removeCurrentFragmentAndMoveBack();
-
-
+                    ((MainPage) getActivity()).loadFragment(new AdHocSubscription(), true);
                 }else if(data.equalsIgnoreCase("0")){
                     Toasty.error(getActivity(), ""+response.body().getMessage(), Toasty.LENGTH_SHORT).show();
-                    //  progressDialog.dismiss();
+                     progressDialog.dismiss();
                 }
             }
 
@@ -271,7 +269,6 @@ public class AdHocSubscription extends Fragment {
         progressDialog.show();
         progressDialog.setCancelable(false);
 
-
         recyclerView.clearOnScrollListeners();
         subList.clear();
 
@@ -287,8 +284,6 @@ public class AdHocSubscription extends Fragment {
                 if (subList.size()==0){
                     progressDialog.dismiss();
                     recyclerView.setVisibility(View.GONE);
-                    linearLayout.setVisibility(View.VISIBLE);
-
                 }else {
 
                     for (int i=0;i<subList.size();i++){
@@ -301,7 +296,6 @@ public class AdHocSubscription extends Fragment {
                         adapter1.notifyItemInserted(subList.size() - 1);
                         recyclerView.setHasFixedSize(true);
                         recyclerView.setVisibility(View.VISIBLE);
-                        linearLayout.setVisibility(View.GONE);
 
                         progressDialog.dismiss();
                     }
@@ -330,11 +324,11 @@ public class AdHocSubscription extends Fragment {
         MainPage.searchLayout.setVisibility(View.GONE);
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)MainPage.title.getLayoutParams();
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-params.addRule(RelativeLayout.CENTER_VERTICAL);
+        params.addRule(RelativeLayout.CENTER_VERTICAL);
         params.addRule(RelativeLayout.RIGHT_OF, R.id.back);
         MainPage.title.setLayoutParams(params);
-
         if (DetectConnection.checkInternetConnection(getActivity())){
+            getSubscription();
             getSubscriptionList();
         }else {
             TastyToast.makeText(getActivity(), "No Internet Connection", TastyToast.LENGTH_SHORT, TastyToast.DEFAULT).show();
